@@ -1,0 +1,74 @@
+# Job Copilot Agent System - Dependencies
+
+## Core Agent Framework
+langchain>=0.1.0          # LLM framework
+langgraph>=0.0.1          # Agentic workflow orchestration
+langchain-openai>=0.1.0   # OpenAI integration
+
+## Data Validation & Modeling
+pydantic>=2.0             # Data validation and settings management
+pydantic-settings>=2.0    # Settings management
+
+## Development & Testing
+pytest>=7.0               # Testing framework
+pytest-asyncio>=0.23.0    # Async test support
+pytest-cov>=4.0           # Coverage reporting
+
+## Optional: Async Task Processing
+celery>=5.3.0             # Task queue
+redis>=5.0.0              # Redis client (required for Celery)
+
+## Optional: FastAPI Integration
+fastapi>=0.104.0          # Already in main project
+uvicorn>=0.24.0           # Already in main project
+
+## Logging & Monitoring
+python-json-logger>=2.0   # JSON logging
+structlog>=23.0           # Structured logging
+
+## Utilities
+python-dotenv>=1.0        # Environment variables
+typing-extensions>=4.8    # Extended typing support
+
+## Installation
+
+### Minimal (core functionality)
+```bash
+uv add langchain langgraph langchain-openai pydantic
+```
+
+### Full Stack (with optional features)
+```bash
+uv add langchain langgraph langchain-openai pydantic celery redis python-json-logger structlog python-dotenv
+```
+
+### Development
+```bash
+uv add --dev pytest pytest-asyncio pytest-cov black ruff mypy
+```
+
+## Version Compatibility
+
+- Python: 3.9+
+- LangChain: 0.1.0+
+- LangGraph: 0.0.1+
+- OpenAI API: Latest
+
+## Environment Variables
+
+```bash
+# Required
+OPENAI_API_KEY=sk-...
+
+# Optional
+LLM_MODEL=gpt-4-turbo
+LLM_TEMPERATURE=0.7
+REDIS_URL=redis://localhost:6379/0
+```
+
+## Notes
+
+- `langchain` and `langgraph` actively developed; we recommend pinning versions in production
+- `pydantic>=2.0` required for model serialization features
+- `Redis` only needed for Celery integration
+- `FastAPI` already included in main project dependencies
